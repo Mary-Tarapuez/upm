@@ -26,6 +26,7 @@ public class Aplicacion {
 		System.out.println("   * Tiene 10 intentos para descifrar codigo automatico");
 		System.out.println("*****************************************************************************");
 		System.out.println("");
+		System.out.println("cambios");
 	}
 
 	public static void main(String[] args) {
