@@ -4,6 +4,7 @@
 package es.upm.master.mastermind;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -12,6 +13,7 @@ import java.util.Scanner;
  *
  */
 public class MasterMindScanner {
+	public static final List<String> COLORES_PERMITIDOS = Arrays.asList("r", "b", "y", "g", "o", "p");
 
 	private Scanner keyboard;
 	private String input;
@@ -20,28 +22,35 @@ public class MasterMindScanner {
 		keyboard = new Scanner(System.in);
 	}
 
-	public boolean readGenerarCod() {
-		boolean statusEnteredColors = Boolean.FALSE;
-		System.out.println("Ingrese la opción:");
+	private void readkeyboard() {
+		System.out.println("Ingrese el valor: ");
 		input = keyboard.nextLine();
-
-		if (input.equalsIgnoreCase("1")) {
-			statusEnteredColors = Boolean.TRUE;
-		}
-		return statusEnteredColors;
-
 	}
 
-	public List<String> readEnteredColors(int max) {
+	public String readColors() {
+		readkeyboard();
+		return this.input;
+	}
 
+	public List<String> readColors(int max) {
 		List<String> enteredColors = new ArrayList<String>();
 		do {
-			System.out.println("Ingrese el color:");
-			input = keyboard.nextLine();
-			enteredColors.add(input);
+			readkeyboard();
+			boolean validColor = COLORES_PERMITIDOS.stream().anyMatch(n -> n.equalsIgnoreCase(this.input));
+
+			if (validColor) {
+				boolean existColor = enteredColors.stream().anyMatch(n -> n.equalsIgnoreCase(this.input));
+
+				if (!existColor) {
+					enteredColors.add(input);
+				} else {
+					System.out.println("ERROR -> No puede ingresar colores repetidos");
+				}
+
+			} else {
+				System.out.println("ERROR -> Color ingresado incorrecto");
+			}
 		} while (enteredColors.size() < max);
-
 		return enteredColors;
-
 	}
 }

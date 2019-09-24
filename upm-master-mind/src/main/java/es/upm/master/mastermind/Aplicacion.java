@@ -3,6 +3,8 @@
  */
 package es.upm.master.mastermind;
 
+import java.util.List;
+
 /**
  * @author Mary
  *
@@ -28,37 +30,56 @@ public class Aplicacion {
 		System.out.println("");
 	}
 
+	private static void print(MasterMind game) {
+		System.out.print("Colores Ingresados: ");
+		game.printColors(game.getEnteredColors());
+		System.out.println("");
+		System.out.print("Colores heridos: ");
+		game.printColors(game.getWoundedColors());
+		System.out.println("");
+		System.out.print("Colores Muertos: ");
+		game.printColors(game.getDeadColors());
+
+	}
+
+////////
 	public static void main(String[] args) {
 		showMenu();
 		MasterMind game = new MasterMind();
-		MasterMindScanner scanner = new MasterMindScanner();
-		boolean generarcod = scanner.readGenerarCod();
+		Object enteredColor = game.readColors(1);
+		Object enteredColor1 = null;
 
-		if (generarcod) {
+		if (enteredColor.equals("1")) {
 			game.generarCod();
-			System.out.println("Codigo secreto generado con exito ****");
-			game.setEnteredColors(scanner.readEnteredColors(4));
+			System.out.print("Colores secretos Automáticos: ****");
+			int countTrys = 1;
+			do {
+				System.out.println("");
+				System.out.println("INGRESE LOS COLORES PARA DESCIFRAR CODIGO");
+				List<String> enteredColors = (List<String>) game.readColors(2);
+				game.setEnteredColors(enteredColors);
+				game.seeWonderedAndDead();
+				if ((countTrys == game.getMaxTry()) || game.getDeadColors().size() == game.getMaxColors()) {
+					break;
+				}
+				System.out.println("");
+				System.out.println("RESULTADO DE LA PARTIDA");
+				print(game);
+				System.out.println(" ");
+				System.out.println("PARA CONTINUAR PRESIONE CUALQUIER TECLA, PARA TERMINAR PRESIONE LA TECLA (n)");
+				enteredColor1 = game.readColors(1);
+				countTrys++;
+			} while (!enteredColor1.toString().equalsIgnoreCase("n"));
+
 			System.out.println("");
 			System.out.println("RESULTADO DEL JUEGO");
 			System.out.println("Colores generados de forma automática: ");
+			game.printColors(game.getSecretColors());
+			System.out.println("");
+			print(game);
+			System.out.println("");
 
-
-			System.out.println("");
-			System.out.print("Colores ingresados por el jugador: ");
-			game.print(game.getEnteredColors());
-			System.out.println("");
-			game.seeWonderedAndDead();
-			System.out.print("Colores Heridos: ");
-			for (String wondedColor : game.getWoundedColors()) {
-				System.out.print(wondedColor + " ");
-			}
-			System.out.println("");
-			System.out.print("Colores Muertos: ");
-			for (String deadColor : game.getDeadColors()) {
-				System.out.print(deadColor + "");
-			}
-			System.out.println("");
-			System.out.println("JUEGO FINALIZADO");
+			System.out.println("A GANADO");
 		} else {
 			System.out.println("JUEGO FINALIZADO");
 		}

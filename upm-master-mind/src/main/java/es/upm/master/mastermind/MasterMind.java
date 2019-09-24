@@ -4,7 +4,6 @@
 package es.upm.master.mastermind;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -13,59 +12,71 @@ import java.util.List;
  */
 public class MasterMind {
 
+	private static final int TOTAL_TRY = 10;
+	private static final int TOTAL_COLORS = 4;
 	private List<String> woundedColors;
 	private List<String> deadColors;
 	private List<String> secretColors;
 	private List<String> enteredColors;
 	private int maxTry;
+	private int maxColors;
+	private MasterMindView objPrint;
+	private MasterMindScanner objRead;
 
-	/**
+	/**     
 	 * 
 	 */
 	public MasterMind() {
 
-		this.setEnteredColors(new ArrayList<String>());
-		this.setWoundedColors(new ArrayList<String>());
-		this.setDeadColors(new ArrayList<String>());
-
+		this.setSecretColors(new ArrayList<String>());
+		this.setMaxTry(TOTAL_TRY);
+		this.setMaxColors(TOTAL_COLORS);
 	}
 
 	public void generarCod() {
 
-		List<String> secretColors = Arrays.asList("o", "r", "y", "b");
-		this.setSecretColors(secretColors);
+		while (this.getSecretColors().size() < this.getMaxColors()) {
 
+			int rand = 1 + (int) (Math.random() * 6);
+			String color = convertToChar(rand);
+			boolean exist = this.getSecretColors().stream().anyMatch(n -> n.equals(color));
+			if (!exist) {
+				this.getSecretColors().add(color);
+			}
+		}
 	}
 
-	// public void Code() {
-
-	// char[] secretColors = "bgopry".toCharArray();
-
-	// Longitud del array de char.
-	// int charsLength = secretColors.length;
-
-	// Random random = new Random();
-
-	// Un StringBuffer para componer la cadena aleatoria de forma eficiente
-	// StringBuffer buffer = new StringBuffer();
-
-	// Bucle para elegir una cadena de 4 caracteres al azar
-	// for (int i = 0; i < 4; i++) {
-
-	// Añadimos al buffer un caracter al azar del array
-	// buffer.append(secretColors[random.nextInt(charsLength)]);
-
-	// StringBuffer chars = new StringBuffer(“cadena”);
-	// Y solo nos queda hacer algo con la cadena
-	// System.out.println("Random String " + buffer.toString());
-	// }
-//	}
+	private static String convertToChar(int randomNumber) {
+		switch (randomNumber) {
+		// red
+		case 1:
+			return "r";
+		// orange
+		case 2:
+			return "o";
+		// yellow
+		case 3:
+			return "y";
+		// green
+		case 4:
+			return "g";
+		// blue
+		case 5:
+			return "b";
+		// purple
+		case 6:
+			return "p";
+		default:
+			return "x";
+		}
+	}
 
 	public void seeWonderedAndDead() {
+		this.setWoundedColors(new ArrayList<String>());
+		this.setDeadColors(new ArrayList<String>());
 		for (String enteredColor : this.getEnteredColors()) {
 			for (String secretColor : this.getSecretColors()) {
 				if (enteredColor.equals(secretColor)) {
-
 					int i = this.getEnteredColors().indexOf(enteredColor);
 					int j = this.getSecretColors().indexOf(secretColor);
 					if (i == j) {
@@ -78,18 +89,27 @@ public class MasterMind {
 		}
 	}
 
-	public void print(List<String> printColors) {
-		MasterMindView objPrint = new MasterMindView();
+	public void printColors(List<String> printColors) {
+		objPrint = new MasterMindView();
 		objPrint.setPrintColors(printColors);
 		objPrint.printColors();
 	}
 
-	public int getMaxTry() {
-		return maxTry;
-	}
+	public Object readColors(int indice) {
 
-	public void setMaxTry(int maxTry) {
-		this.maxTry = maxTry;
+		objRead = new MasterMindScanner();
+
+		switch (indice) {
+		case 1:
+			return objRead.readColors();
+
+		case 2:
+			return objRead.readColors(this.getMaxColors());
+
+		default:
+			return null;
+		}
+
 	}
 
 	public List<String> getWoundedColors() {
@@ -122,6 +142,46 @@ public class MasterMind {
 
 	public void setEnteredColors(List<String> enteredColors) {
 		this.enteredColors = enteredColors;
+	}
+
+	public int getMaxTry() {
+		return maxTry;
+	}
+
+	public void setMaxTry(int maxTry) {
+		this.maxTry = maxTry;
+	}
+
+	public int getMaxColors() {
+		return maxColors;
+	}
+
+	public void setMaxColors(int maxColors) {
+		this.maxColors = maxColors;
+	}
+
+	public MasterMindView getObjPrint() {
+		return objPrint;
+	}
+
+	public void setObjPrint(MasterMindView objPrint) {
+		this.objPrint = objPrint;
+	}
+
+	public MasterMindScanner getObjRead() {
+		return objRead;
+	}
+
+	public void setObjRead(MasterMindScanner objRead) {
+		this.objRead = objRead;
+	}
+
+	public static int getTotalTry() {
+		return TOTAL_TRY;
+	}
+
+	public static int getTotalColors() {
+		return TOTAL_COLORS;
 	}
 
 }

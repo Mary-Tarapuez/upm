@@ -14,7 +14,7 @@ public class MasterMindView {
 	private List<String> printColors;
 
 	public MasterMindView() {
-		
+
 	}
 
 	public void printColors() {
@@ -23,7 +23,7 @@ public class MasterMindView {
 			for (String color : this.getPrintColors()) {
 				enteredColors = enteredColors + color + " ";
 			}
-			System.out.print(enteredColors);
+			System.out.print(enteredColors.trim());
 		}
 	}
 
