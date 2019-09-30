@@ -37,30 +37,6 @@ public class MasterMind {
 
 	}
 
-	// public void Code() {
-
-	// char[] secretColors = "bgopry".toCharArray();
-
-	// Longitud del array de char.
-	// int charsLength = secretColors.length;
-
-	// Random random = new Random();
-
-	// Un StringBuffer para componer la cadena aleatoria de forma eficiente
-	// StringBuffer buffer = new StringBuffer();
-
-	// Bucle para elegir una cadena de 4 caracteres al azar
-	// for (int i = 0; i < 4; i++) {
-
-	// Añadimos al buffer un caracter al azar del array
-	// buffer.append(secretColors[random.nextInt(charsLength)]);
-
-	// StringBuffer chars = new StringBuffer(“cadena”);
-	// Y solo nos queda hacer algo con la cadena
-	// System.out.println("Random String " + buffer.toString());
-	// }
-//	}
-
 	public void seeWonderedAndDead() {
 		for (String enteredColor : this.getEnteredColors()) {
 			for (String secretColor : this.getSecretColors()) {
