@@ -1,4 +1,13 @@
-C:\Workspace\upm\upm-master-mind\src\main\java\es\upm\master\mastermind\MasterMind.java
-C:\Workspace\upm\upm-master-mind\src\main\java\es\upm\master\mastermind\MasterMindScanner.java
-C:\Workspace\upm\upm-master-mind\src\main\java\es\upm\master\mastermind\MasterMindView.java
-C:\Workspace\upm\upm-master-mind\src\main\java\es\upm\master\mastermind\Aplicacion.java
+C:\Workspace\upm\upm-master-mind\src\main\java\controllers\BaseController.java
+C:\Workspace\upm\upm-master-mind\src\main\java\utils\Constants.java
+C:\Workspace\upm\upm-master-mind\src\main\java\views\ScannerView.java
+C:\Workspace\upm\upm-master-mind\src\main\java\views\PrinterView.java
+C:\Workspace\upm\upm-master-mind\src\main\java\models\DomainModel.java
+C:\Workspace\upm\upm-master-mind\src\main\java\utils\Util.java
+C:\Workspace\upm\upm-master-mind\src\main\java\controllers\SecretCodeController.java
+C:\Workspace\upm\upm-master-mind\src\main\java\views\MenuView.java
+C:\Workspace\upm\upm-master-mind\src\main\java\controllers\MasterMindController.java
+C:\Workspace\upm\upm-master-mind\src\main\java\views\GameView.java
+C:\Workspace\upm\upm-master-mind\src\main\java\models\MasterMindModel.java
+C:\Workspace\upm\upm-master-mind\src\main\java\views\Console.java
+C:\Workspace\upm\upm-master-mind\src\main\java\models\SecretCodeModel.java

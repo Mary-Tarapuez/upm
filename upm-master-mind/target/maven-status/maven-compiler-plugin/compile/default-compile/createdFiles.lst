@@ -1,4 +1,13 @@
-es\upm\master\mastermind\Aplicacion.class
-es\upm\master\mastermind\MasterMindView.class
-es\upm\master\mastermind\MasterMindScanner.class
-es\upm\master\mastermind\MasterMind.class
+utils\Constants.class
+models\DomainModel.class
+controllers\BaseController.class
+models\MasterMindModel.class
+views\GameView.class
+utils\Util.class
+models\SecretCodeModel.class
+views\PrinterView.class
+views\ScannerView.class
+controllers\SecretCodeController.class
+views\Console.class
+views\MenuView.class
+controllers\MasterMindController.class
